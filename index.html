@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Azul Sofía David | Web Designer &amp; Developer
+  </title>
+  <meta name="description"
+    content="Azul Sofía David is a web designer and developer based in Argentina, building clean, functional websites and apps with HTML, CSS, JavaScript, React and more.">
+  <meta name="author" content="Azul Sofía David">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Azul Sofía David, Web Designer & Developer">
+  <meta property="og:description"
+    content="Front-end and full-stack web development: HTML, CSS, JavaScript, React, React Native, TypeScript, PHP, MySQL, Node.js.">
+  <meta property="og:image" content="https://azulsofia.vercel.app/workingazu.jpg">
+  <meta property="og:url" content="https://azulsofia.vercel.app">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%230D1117'/%3E%3Ctext x='32' y='43' font-family='monospace' font-weight='700' font-size='24' fill='%233FB950' text-anchor='middle'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0D1117;
+      --bg-alt: #161B22;
+      --card: #161B22;
+      --ink: #E6EDF3;
+      --ink-soft: #8B949E;
+      --accent: #be2b7c;
+      --accent-soft: #dd749c;
+      --line: #30363D;
+      --max: 1120px;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: auto;
+      overflow-x: hidden;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    a {
+      color: inherit
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--mono);
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    p {
+      margin: 0
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer
+    }
+
+    .container {
+      max-width: var(--max);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -3rem;
+      background: var(--accent);
+      color: #06210D;
+      padding: .6rem 1rem;
+      z-index: 100;
+      transition: top .15s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(13, 17, 23, .88);
+      backdrop-filter: saturate(140%) blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 1.1rem;
+    }
+
+    .nav-brand {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      letter-spacing: .01em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 60vw;
+    }
+
+    .nav-brand .dim {
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+    }
+
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      margin-inline: auto;
+      background: var(--ink);
+      display: block;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(78%, 320px);
+      height: 100vh;
+      height: 100dvh;
+      z-index: 60;
+      overflow-y: auto;
+      background: var(--bg-alt);
+      border-left: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.75rem;
+      padding: 2rem clamp(1.5rem, 6vw, 3rem);
+      transform: translateX(100%);
+      transition: transform .28s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-menu {
+        transition: none
+      }
+    }
+
+    .nav-menu.is-open {
+      transform: translateX(0)
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-family: var(--mono);
+    }
+
+    .nav-menu a:hover {
+      color: var(--accent);
+    }
+
+    .nav-menu-close {
+      align-self: flex-end;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: var(--ink-soft);
+      padding: .4rem;
+      margin-bottom: .5rem;
+    }
+
+    .nav-menu-close:hover {
+      color: var(--ink);
+    }
+
+    @media (min-width:820px) {
+      .nav-menu-close {
+        display: none;
+      }
+    }
+
+    .nav-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      background: rgba(0, 0, 0, .6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s ease;
+    }
+
+    .nav-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (min-width:820px) {
+      .nav-backdrop {
+        display: none;
+      }
+    }
+
+    body.nav-open {
+      overflow: hidden
+    }
+
+    @media (min-width:820px) {
+      .nav-toggle {
+        display: none
+      }
+
+      .nav-menu {
+        position: static;
+        inset: auto;
+        width: auto;
+        height: auto;
+        z-index: auto;
+        overflow: visible;
+        transform: none;
+        flex-direction: row;
+        align-items: center;
+        gap: clamp(1.25rem, 3vw, 2.25rem);
+        background: none;
+        border: none;
+        padding: 0;
+        justify-content: flex-end;
+      }
+
+      .nav-menu a {
+        font-size: .92rem;
+        font-family: var(--mono);
+        font-weight: 500
+      }
+    }
+
+    /* ---------- Buttons / links ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: .75rem 1.4rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: var(--mono);
+      font-size: .9rem;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: #06210D
+    }
+
+    .btn-quiet {
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .btn-quiet:hover {
+      background: var(--ink);
+      color: var(--bg)
+    }
+
+    .text-link {
+      text-decoration-color: var(--accent);
+      text-underline-offset: 4px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding-block: clamp(3.5rem, 9vw, 6.5rem)
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: clamp(2rem, 5vw, 3rem);
+    }
+
+    .section-head .eyebrow {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--accent);
+      margin-bottom: .5rem;
+      display: block;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin-top: .85rem
+    }
+
+    .practice-note {
+      margin-top: 1rem;
+      font-size: .88rem;
+      color: var(--ink-soft);
+      border-left: 2px solid var(--accent);
+      padding-left: .9rem;
+    }
+
+    .tap-hint {
+      margin-top: .5rem;
+      font-size: .85rem;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding-top: clamp(3rem, 8vw, 5rem);
+      background-image: radial-gradient(circle at 20% 20%, rgba(63, 185, 80, .08), transparent 45%), var(--bg);
+    }
+
+    .hero .container {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width:900px) {
+      .hero .container {
+        grid-template-columns: 1.15fr .85fr;
+        gap: 3.5rem
+      }
+    }
+
+    .hero-copy {
+      animation: rise .6s ease both;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(14px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-copy {
+        animation: none
+      }
+    }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--accent);
+      margin-top: .5rem;
+    }
+
+    .hero-role::before {
+      content: "> ";
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6.5vw, 4.25rem)
+    }
+
+    .hero-tagline {
+      margin-top: 1.5rem;
+      font-size: .95rem;
+      font-family: var(--mono);
+      letter-spacing: .02em;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .hero-intro {
+      margin-top: 1.5rem;
+      max-width: 46ch;
+      font-size: 1.08rem;
+      color: var(--ink-soft);
+    }
+
+    .hero-intro strong {
+      color: var(--ink);
+    }
+
+    .hero-location {
+      margin-top: 1rem;
+      font-size: .9rem;
+      color: var(--ink-soft);
+      font-family: var(--mono);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.25rem;
+    }
+
+    .hero-visual {
+      aspect-ratio: 4/5;
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-soft);
+      font-size: .85rem;
+      text-align: center;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .hero-visual.has-image {
+      padding: 0
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    /* ---------- About ---------- */
+    .about {
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+    }
+
+    .about .container {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width:900px) {
+      .about .container {
+        grid-template-columns: .8fr 1.2fr;
+        gap: 3.5rem
+      }
+
+      .about-visual {
+        aspect-ratio: auto;
+        height: 100%;
+      }
+    }
+
+    .about-visual {
+      border: 1px solid var(--line);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-soft);
+      font-size: .85rem;
+      text-align: center;
+      padding: 1rem;
+      overflow: hidden;
+      aspect-ratio: 10/7;
+      min-width: 0;
+    }
+
+    .about-visual.has-image {
+      padding: 0
+    }
+
+    .about-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .about-copy p {
+      margin-bottom: 1.15rem;
+      color: var(--ink-soft);
+      max-width: 60ch
+    }
+
+    .about-copy p:last-child {
+      margin-bottom: 0
+    }
+
+    .about-copy strong {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .about-copy code {
+      font-family: var(--mono);
+      color: var(--accent);
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      padding: .1rem .4rem;
+      font-size: .9em;
+    }
+
+    .about-copy .code-line {
+      display: block;
+      margin: 1.15rem 0;
+      font-family: var(--mono);
+      color: var(--accent);
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      padding: .75rem 1rem;
+      font-size: .95rem;
+    }
+
+    /* ---------- Skills ---------- */
+    .skills {
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width:760px) {
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .skill-card ul {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .skill-card li {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: var(--bg);
+      padding: .3rem .65rem;
+    }
+
+    /* ---------- Projects ---------- */
+    .projects {
+      background: var(--bg);
+      border-top: 1px solid var(--line)
+    }
+
+    .project-entry {
+      border-top: 1px solid var(--line);
+      padding-block: clamp(2rem, 4vw, 2.75rem);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .project-entry:last-of-type {
+      border-bottom: 1px solid var(--line)
+    }
+
+    @media (min-width:900px) {
+      .project-entry {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center
+      }
+    }
+
+    .project-visual {
+      border: 1px solid var(--line);
+      background: var(--bg-alt);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16/9;
+      min-width: 0;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: zoom-in;
+      transition: opacity .2s ease;
+    }
+
+    .project-visual img:hover {
+      opacity: .85;
+    }
+
+    .project-copy .index {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--accent);
+    }
+
+    .project-copy h3 {
+      font-size: 1.4rem;
+      margin-top: .5rem;
+    }
+
+    .project-copy p {
+      color: var(--ink-soft);
+      margin-top: .85rem;
+      max-width: 48ch
+    }
+
+    .project-stack {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .project-stack li {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--accent-soft);
+      border: 1px solid var(--line);
+      padding: .25rem .6rem;
+    }
+
+    .project-links {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      font-family: var(--mono);
+      font-size: .85rem;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 4px;
+      color: var(--ink);
+    }
+
+    /* ---------- Image modal ---------- */
+    .img-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1.5rem, 5vw, 3rem);
+      z-index: 200;
+    }
+
+    .img-modal.is-open {
+      display: flex;
+    }
+
+    .img-modal img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      background: var(--bg);
+    }
+
+    .img-modal-close {
+      position: absolute;
+      top: clamp(1rem, 3vw, 1.75rem);
+      right: clamp(1rem, 3vw, 1.75rem);
+      color: #fff;
+      font-size: 2.25rem;
+      line-height: 1;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .25rem .6rem;
+    }
+
+    .img-modal-close:hover {
+      opacity: .8;
+    }
+
+    /* ---------- Education & Languages ---------- */
+    .education {
+      border-top: 1px solid var(--line)
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    @media (min-width:760px) {
+      .info-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .info-block h2 {
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      margin-bottom: 1.5rem
+    }
+
+    .edu-item h3 {
+      font-size: 1.1rem
+    }
+
+    .edu-item .meta {
+      color: var(--ink-soft);
+      font-size: .88rem;
+      margin-top: .3rem;
+      font-family: var(--mono);
+    }
+
+    .edu-item p {
+      color: var(--ink-soft);
+      margin-top: .85rem;
+      max-width: 50ch
+    }
+
+    .lang-item {
+      border-top: 1px solid var(--line);
+      padding-block: 1.1rem;
+    }
+
+    .lang-item:last-child {
+      border-bottom: 1px solid var(--line)
+    }
+
+    .lang-item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .lang-item-head h3 {
+      font-size: 1.05rem
+    }
+
+    .lang-item-head span {
+      color: var(--ink-soft);
+      font-size: .88rem;
+      font-family: var(--mono);
+    }
+
+    .lang-detail {
+      margin-top: .6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem 1.25rem;
+      font-size: .85rem;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      background: var(--bg);
+      color: var(--ink);
+      border-top: 1px solid var(--line)
+    }
+
+    .contact h2 {
+      color: var(--ink);
+      font-size: clamp(1.9rem, 5vw, 2.75rem)
+    }
+
+    .contact-copy {
+      max-width: 52ch;
+      margin-top: 1.25rem;
+      color: var(--ink-soft);
+    }
+
+    .contact-grid {
+      margin-top: 2.75rem;
+      display: grid;
+      gap: 1.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .contact-item .label {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      font-size: 1rem;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 4px;
+    }
+
+    .contact-cta {
+      margin-top: 2.75rem
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      background: var(--bg);
+      color: var(--ink-soft);
+      border-top: 1px solid var(--line);
+      padding-block: 2.5rem;
+      font-size: .85rem;
+    }
+
+    .site-footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 1rem
+    }
+
+    .footer-meta p {
+      margin-bottom: .35rem
+    }
+
+    .footer-meta a {
+      text-decoration-color: var(--accent);
+      text-underline-offset: 3px
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#hero" class="nav-brand">Azul<span class="dim">.</span>Dev</a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-backdrop" id="nav-backdrop"></div>
+      <nav class="nav-menu" id="nav-menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">&larr;</button>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <p class="hero-role">web-designer --developer</p>
+          <h1>Azul Sofía David</h1>
+          <p class="hero-tagline">Front-End · Back-End · Full-Stack Web Development</p>
+          <p class="hero-intro">
+            I design and build clean, functional websites and web apps, from
+            <strong>HTML, CSS and JavaScript</strong> front ends to <strong>React</strong> and
+            <strong>React Native</strong> interfaces, with <strong>PHP, MySQL, Node.js and Express</strong>
+            on the back end when a project needs it.
+          </p>
+          <p class="hero-location">// based in Argentina: available for remote work</p>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn">View projects</a>
+            <a href="#contact" class="btn btn-quiet">Contact me</a>
+          </div>
+        </div>
+
+        <div class="hero-visual has-image">
+          <img src="/profileazu.jpeg" alt="Portrait of Azul Sofía David">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-visual has-image">
+          <img src="/workingazu.jpeg" alt="Azul Sofía David working">
+        </div>
+
+        <div class="about-copy">
+          <h2 style="margin-bottom:1.5rem;font-size:clamp(1.6rem,4vw,2.25rem)">About</h2>
+
+          <p>
+            I turn an idea or a design into a clean, working website. I like
+            the whole process, from structuring the layout to writing solid code and making sure the
+            final result feels finished, not just functional.
+          </p>
+          <p>
+            My main stack is HTML, CSS and JavaScript, with React, React Native and TypeScript for
+            more complex builds, and PHP, MySQL, Node.js and Express on the back end when a project
+            needs it. <strong>I pick up new frameworks and languages fast.</strong>
+          </p>
+          <p><code>&lt; I use AI tools to speed up my workflow, but I always review and polish the output myself
+            so the final code and design stay clean and coherent. / &gt;</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">// stack</span>
+          <h2 style="font-size:clamp(1.6rem,4vw,2.25rem)">Skills &amp; Tools</h2>
+          <p>The languages, frameworks and tools I use to design, build and ship websites and apps.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Front-End</h3>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>React Native</li>
+              <li>TypeScript</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Back-End &amp; Databases</h3>
+            <ul>
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>Node.js</li>
+              <li>Express</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Workflow</h3>
+            <ul>
+              <li>Responsive Design</li>
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>AI-Assisted Development (Claude, Google AI Studio)</li>
+              <li>Debugging &amp; QA</li>
+              <li>Figma</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">// projects</span>
+          <h2 style="font-size:clamp(1.6rem,4vw,2.25rem)">Projects</h2>
+          <p>A few things I've built on my own to practice real-world features and sharpen my skills.</p>
+          <p class="tap-hint">Tap any image to view it full size.</p>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-visual">
+            <img src="images/project-subscription-tracker.png" alt="Subscription Tracker app screenshot">
+          </div>
+          <div class="project-copy">
+            <span class="index">01</span>
+            <h3>Subscription Tracker</h3>
+            <p>
+            <p>A subscription management dashboard that tracks every recurring payment in one place: monthly and annual
+              cost estimates, renewal alerts, category breakdown (streaming, software, gym, and more), and CSV export.
+              Everything is stored locally, with no data sent to a server.</p>
+            </p>
+            <ul class="project-stack">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+              <a href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-visual">
+            <img src="images/project-planner.png" alt="Planner app screenshot">
+          </div>
+          <div class="project-copy">
+            <span class="index">02</span>
+            <h3>Daily / Monthly / Yearly Planner</h3>
+            <p>
+            <p>A Notion-style planner with daily, weekly, monthly and yearly views: daily priorities, habit tracking,
+              hour-by-hour time blocking, a daily scratchpad, monthly and yearly reflections, and fully custom sections
+              and pages, with light/dark mode and export/print support.</p>
+            </p>
+            <ul class="project-stack">
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>CSS</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+              <a href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-visual">
+            <img src="images/project-budget-tracker.png" alt="Budget Tracker app screenshot">
+          </div>
+          <div class="project-copy">
+            <span class="index">03</span>
+            <h3>Budget Tracker</h3>
+            <p>
+            <p>A self-contained personal finance tracker that logs income and expenses, categorizes transactions, and
+              calculates your net balance and savings rate automatically. It also includes savings goals, a debt payoff
+              tracker, backup export/import, and 100% local, private data storage.</p>
+            </p>
+            <ul class="project-stack">
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>JavaScript</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+              <a href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-visual">
+            <img src="images/project-ebook-creator.png" alt="Profitable Ebook Creator screenshot">
+          </div>
+          <div class="project-copy">
+            <span class="index">04</span>
+            <h3>Profitable Ebook Creator</h3>
+            <p>
+            <p>An ebook formatting tool built around its own tag-based markup language — you write your content using
+              tags like [text: Hello], and the app lays it out automatically (covers, index, headings, quotes, callouts,
+              footnotes) and exports a polished PDF, ready to sell.</p>
+            </p>
+            <ul class="project-stack">
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>Node.js</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+              <a href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">Code →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-visual">
+            <img src="images/project-quince-invitation.png" alt="Interactive Quinceañera Invitation screenshot">
+          </div>
+          <div class="project-copy">
+            <span class="index">05</span>
+            <h3>Interactive Quinceañera Invitation</h3>
+            <p>
+            <p>An animated digital invitation that opens with an envelope-unsealing animation before revealing the page.
+              It includes an event countdown, an interactive photo gallery, background music of the guest's choice, a
+              venue map, the party date, and a section with bank details for monetary gifts.</p>
+            </p>
+            <ul class="project-stack">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+              <a href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">Code →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION + LANGUAGES -->
+    <section id="education-languages" class="education">
+      <div class="container info-grid">
+        <div class="info-block">
+          <h2>Education</h2>
+          <div class="edu-item">
+            <h3>Professional and Personal Computing Technician</h3>
+            <p class="meta">Técnico en Informática Profesional y Personal · Escuela de Educación Secundaria Técnica N5,
+              2022-2025</p>
+            <p>Technical secondary education focused on computing, digital technologies, software, hardware, programming
+              fundamentals, and web related skills.</p>
+          </div>
+        </div>
+
+        <div class="info-block" id="languages">
+          <h2>Languages</h2>
+          <div class="lang-item">
+            <div class="lang-item-head">
+              <h3>Spanish</h3>
+              <span>Native</span>
+            </div>
+          </div>
+
+          <div class="lang-item">
+            <div class="lang-item-head">
+              <h3>English</h3>
+              <span>B1+, approaching B2</span>
+            </div>
+            <div class="lang-detail">
+              <span>Reading: advanced, highly comfortable</span>
+              <span>Writing: intermediate</span>
+              <span>Speaking: basic</span>
+              <span>Listening: intermediate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Let's build something!</h2>
+        <p class="contact-copy">
+          Looking for a web designer/developer for your project or a remote role?
+          Get in touch! I'd love to hear about it.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <p class="label">Email</p>
+            <a class="text-link" href="mailto:azulsofiadavid@gmail.com">azulsofiadavid@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <p class="label">GitHub</p>
+            <a class="text-link" href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">View
+              profile</a>
+          </div>
+          <div class="contact-item">
+            <p class="label">Upwork</p>
+            <a class="text-link" href="https://www.upwork.com/freelancers/~01d8a99d67c263c19f" target="_blank"
+              rel="noopener noreferrer">View profile</a>
+          </div>
+          <div class="contact-item">
+            <p class="label">Location</p>
+            <span>Argentina</span>
+          </div>
+        </div>
+
+        <div class="contact-cta">
+          <a href="mailto:azulsofiadavid@gmail.com" class="btn">Contact me</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-meta">
+        <p class="footer-brand">Azul Sofía David</p>
+        <p>Web Designer &amp; Developer</p>
+        <p>HTML · CSS · JavaScript · React</p>
+        <p>Argentina</p>
+      </div>
+
+      <div class="footer-meta">
+        <p><a href="mailto:azulsofiadavid@gmail.com">azulsofiadavid@gmail.com</a></p>
+        <p><a href="https://github.com/Azu-ul" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+        <p><a href="https://www.upwork.com/freelancers/~01d8a99d67c263c19f" target="_blank"
+            rel="noopener noreferrer">Upwork</a></p>
+        <p>&copy; <span id="year"></span> Azul Sofía David</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- IMAGE MODAL -->
+  <div class="img-modal" id="img-modal" aria-hidden="true">
+    <button class="img-modal-close" id="img-modal-close" aria-label="Close image">&times;</button>
+    <img id="img-modal-img" src="" alt="">
+  </div>
+
+  <script>
+    function initNav() {
+      const toggle = document.querySelector(".nav-toggle");
+      const menu = document.getElementById("nav-menu");
+      const backdrop = document.getElementById("nav-backdrop");
+      const closeBtn = document.getElementById("nav-menu-close");
+
+      function closeMenu() {
+        menu.classList.remove("is-open");
+        backdrop.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("nav-open");
+      }
+
+      toggle.addEventListener("click", () => {
+        const isOpen = menu.classList.toggle("is-open");
+        backdrop.classList.toggle("is-open", isOpen);
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        document.body.classList.toggle("nav-open", isOpen);
+      });
+
+      backdrop.addEventListener("click", closeMenu);
+      closeBtn.addEventListener("click", closeMenu);
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && menu.classList.contains("is-open")) {
+          closeMenu();
+          toggle.focus();
+        }
+      });
+    }
+
+    function initImageModal() {
+      const modal = document.getElementById("img-modal");
+      const modalImg = document.getElementById("img-modal-img");
+      const closeBtn = document.getElementById("img-modal-close");
+      const triggers = document.querySelectorAll(".project-visual img");
+
+      function openModal(img) {
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        modalImg.src = "";
+      }
+
+      triggers.forEach((img) => {
+        img.setAttribute("role", "button");
+        img.setAttribute("tabindex", "0");
+        img.addEventListener("click", () => openModal(img));
+        img.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openModal(img);
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initNav();
+      initImageModal();
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+
+</html>
